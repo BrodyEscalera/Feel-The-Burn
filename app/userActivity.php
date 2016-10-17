@@ -18,7 +18,8 @@ class userActivity extends Model
         'activity',
         'distance',
         'time',
-        'activityName'
+        'activityName',
+        'comments',
     ];
 
     

@@ -18,6 +18,7 @@ class CreateUserActivitiesTable extends Migration
             $table->string('activity');
             $table->string('distance');
             $table->string('time');
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }

@@ -45,3 +45,5 @@ Route::resource('activities','ActivitiesController');
 route::get('activities/{id}/delete','ActivitiesController@Destroy');
 
 
+
+

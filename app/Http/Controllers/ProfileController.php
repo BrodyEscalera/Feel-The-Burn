@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 use App\userActivity;
+use App\User;
 
 /**
  * Class ProfileController
@@ -26,7 +27,9 @@ class ProfileController extends Controller
 
         $currentWeeklyMiles = 0;
         $currentWeeklyMinutes = 0;
+        $User =  User::findorfail(1);
 
+        $profileGoal = $User->weeklyGoal;
         $userActivities = userActivity::all();
         foreach ($userActivities as $userActivity) {
 
@@ -40,7 +43,7 @@ class ProfileController extends Controller
         $seconds = $init % 60;
 
 
-        $totalTime = ($hours.':'.$minutes) ;
+        $totalTime = ($hours.'.'.$minutes) ;
 
         return view('pages.myProfile',compact('userActivities','currentWeeklyMiles','totalTime','profileGoal'));
     }

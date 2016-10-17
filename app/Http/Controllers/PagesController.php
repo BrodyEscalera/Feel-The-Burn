@@ -29,8 +29,9 @@ class PagesController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function Goals(){
-
-        return view('pages.goals');
+        $User =  User::findorfail(1);
+        $myGoal = $User->weeklyGoal;
+        return view('pages.goals',compact($myGoal));
     }
 
 
