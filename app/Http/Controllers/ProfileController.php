@@ -25,8 +25,10 @@ class ProfileController extends Controller
     public function Index()
     {
 
+
         $currentWeeklyMiles = 0;
         $currentWeeklyMinutes = 0;
+
         $User =  User::findorfail(1);
 
         $profileGoal = $User->weeklyGoal;
@@ -43,9 +45,13 @@ class ProfileController extends Controller
         $seconds = $init % 60;
 
 
-        $totalTime = ($hours.'.'.$minutes) ;
 
-        return view('pages.myProfile',compact('userActivities','currentWeeklyMiles','totalTime','profileGoal'));
+        $totalTime = ($hours.' hour '.$minutes.' minutes ') ;
+
+        $currentWeeklyPercent = ceil($profileGoal-$currentWeeklyMiles);
+        $unaccomplishedPercent = 100 - $currentWeeklyPercent;
+
+        return view('pages.myProfile',compact('userActivities','currentWeeklyMiles','totalTime','profileGoal','currentWeeklyPercent','unaccomplishedPercent'));
     }
 
 

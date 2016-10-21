@@ -9,9 +9,10 @@
 
 
 
-        <h1>Weekly Goal<br>{{$profileGoal}} miles</h1>
-        <h1>Current Miles<br>{{$currentWeeklyMiles}} miles </h1>
-        <h1>{{$totalTime}} h.m</h1>
+        <div id="chartCont" style="height: 400px; width: 100%;"></div>
+
+        <h3>Time Spent: {{$totalTime}} </h3>
+
 
 
         <script type="text/javascript">
@@ -50,7 +51,32 @@
                     ]
                 });
 
+
+
+                var chart2 = new CanvasJS.Chart("chartCont",
+                        {
+                            title:{
+                                text: ("Weekly Goal "+ ""+({{$profileGoal}})+" miles" )
+                            },
+                            animationEnabled: true,
+                            data: [
+                                {
+                                    type: "doughnut",
+                                    startAngle: 60,
+                                    toolTipContent: "{legendText}: {y} - <strong>#percent% </strong>",
+                                    showInLegend: true,
+                                    explodeOnClick: false, //**Change it to true
+                                    dataPoints: [
+                                        {y: {{$currentWeeklyMiles}}, indexLabel: "Completed #percent%", legendText: "Miles Completed" },
+                                        {y: {{$currentWeeklyPercent}}, indexLabel: "Needed #percent%", legendText: "Miles Needed " },
+
+                                    ]
+                                }
+                            ]
+                        });
+                chart2.render();
                 chart.render();
+
             }
         </script>
 

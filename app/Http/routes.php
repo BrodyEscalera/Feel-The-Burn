@@ -30,8 +30,8 @@ Route::get('login', 'AuthController@login');
 
 Route::get('feed', 'FeedController@Feed');
 
-Route::get('goals', 'PagesController@Goals');
-
+//Route::get('goals', 'GoalsController@Index');
+//Route::post('goals','GoalsController@Update');
 Route::get('more', 'PagesController@More');
 Route::get('myPost', 'PagesController@myPost');
 
@@ -45,5 +45,5 @@ Route::resource('activities','ActivitiesController');
 route::get('activities/{id}/delete','ActivitiesController@Destroy');
 
 
-
+Route::resource('goals','GoalsController');
 
